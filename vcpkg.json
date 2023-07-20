@@ -1,0 +1,64 @@
+{
+	"name": "qsqlbrowser",
+	"version-string": "0.0.0",
+	"default-features": [ "qtbase", "sqlite", "odbc", "mysql", "psql" ],
+	"features": {
+		"qtbase": {
+			"description": "Base GUI library",
+			"dependencies": [
+			  {
+				"name": "qtbase",
+				"default-features": false,
+				"features": ["gui", "widgets", "sql", "png", "zstd"]
+			  },
+			  {
+				"name": "qtbase",
+				"default-features": false,
+				"platform": "linux",
+				"features": ["xcb", "fontconfig"]
+			  }
+			]
+		},
+		"sqlite": {
+			"description": "SQLite driver",
+			"dependencies": [
+			  {
+				"name": "qtbase",
+				"default-features": false,
+				"features": ["sql-sqlite"]
+			  }
+			]
+		},
+		"odbc": {
+			"description": "ODBC driver",
+			"dependencies": [
+			  {
+				"name": "qtbase",
+				"default-features": false,
+				"features": ["sql-odbc"],
+				"platform": "windows"
+			  }
+			]
+		},
+		"mysql": {
+			"description": "MySQL driver",
+			"dependencies": [
+			  {
+				"name": "qtbase",
+				"default-features": false,
+				"features": ["sql-mysql"]
+			  }
+			]
+		},
+		"psql": {
+			"description": "PostgreSQL driver",
+			"dependencies": [
+			  {
+				"name": "qtbase",
+				"default-features": false,
+				"features": ["sql-psql"]
+			  }
+			]
+		}
+  }
+}
