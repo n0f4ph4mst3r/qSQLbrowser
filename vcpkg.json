@@ -1,6 +1,6 @@
 {
 	"name": "qsqlbrowser",
-	"version-string": "0.0.0",
+	"version-string": "0.1.0",
 	"default-features": [ "qtbase", "sqlite", "odbc", "mysql", "psql" ],
 	"features": {
 		"qtbase": {
