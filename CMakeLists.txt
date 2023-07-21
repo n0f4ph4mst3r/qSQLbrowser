@@ -42,7 +42,7 @@ install(TARGETS qSQLbrowser
 )
 
 qt_generate_deploy_app_script(
-    TARGET QSqlBrowser
+    TARGET qSQLbrowser
     OUTPUT_SCRIPT deploy_script
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
