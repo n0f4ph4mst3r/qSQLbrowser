@@ -6,119 +6,122 @@
     "patch": 0
   },
   "configurePresets": [
-	{
-      "name": "ninja-debug-gcc",
-      "displayName": "Ninja+GCC Configure Settings for Debug configuration",
-      "description": "Sets build and install directories",
-      "binaryDir": "${sourceDir}/debug",
-      "generator": "Ninja",
-	  "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-		"CMAKE_INSTALL_PREFIX": "${sourceDir}/out",
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++"
-      }
+  {
+    "name": "default",
+    "displayName": "Default Config",
+    "description": "Default build using Ninja generator and with vcpkg toolchain",
+    "generator": "Ninja",
+    "binaryDir": "${sourceDir}/build",
+    "cacheVariables": {
+      "CMAKE_INSTALL_PREFIX": "${sourceDir}/bin"
+    }
+  },
+  {
+    "name": "msbuild-default",
+    "inherits": "default",
+    "displayName": "MSBuild Configure Settings",
+    "description": "Configure with VS generators",
+    "generator": "Visual Studio 17 2022",
+    "architecture": {
+      "strategy": "set",
+      "value": "x64"
     },
-	{
-      "name": "ninja-debug-clang",
-      "displayName": "Ninja+Clang Configure Settings for Debug configuration",
-      "description": "Sets build and install directories",
-      "binaryDir": "${sourceDir}/debug",
-      "generator": "Ninja",
-	  "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-		"CMAKE_INSTALL_PREFIX": "${sourceDir}/out",
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++"
-      }
-    },
-	{
-      "name": "ninja-release-clang",
-      "displayName": "Ninja+Clang Configure Settings",
-      "description": "Sets build and install directories",
-      "binaryDir": "${sourceDir}/release",
-      "generator": "Ninja",
-	  "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out",
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++"
-      }
-    },
-	{
-      "name": "ninja-release-gcc",
-      "displayName": "Ninja+GCC Configure Settings",
-      "description": "Sets build and install directories",
-      "binaryDir": "${sourceDir}/release",
-      "generator": "Ninja",
-	  "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-		"CMAKE_INSTALL_PREFIX": "${sourceDir}/out",
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++"
-      }
-    },
-	{
-      "name": "ninja-release-clang",
-      "displayName": "Ninja+Clang Configure Settings",
-      "description": "Sets build and install directories",
-      "binaryDir": "${sourceDir}/release",
-      "generator": "Ninja",
-	  "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/bin",
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++"
-      }
-    },
-    {
-      "name": "msbuild-vcpkg",
-      "displayName": "MSBuild (vcpkg toolchain) Configure Settings",
-      "description": "Configure with VS generators and with vcpkg toolchain",
-      "binaryDir": "${sourceDir}/msbuild",
-      "generator": "Visual Studio 17 2022",
-      "architecture": {
-        "strategy": "set",
-        "value": "x64"
-      },
-      "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": {
-          "type": "FILEPATH",
-          "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
-        }
+    "vendor": {
+      "microsoft.com/VisualStudioSettings/CMake/1.0": {
+        "hostOS": [ "Windows" ]
       }
     }
+  },
+  {
+    "name": "msbuild-clang",
+    "inherits": "msbuild-default",
+    "displayName": "MSBuild Configure Settings (ClangCl)",
+    "description": "Configure with VS generators and ClangCl compiler",
+    "toolset": "ClangCL",
+    "vendor": {
+      "microsoft.com/VisualStudioSettings/CMake/1.0": {
+        "hostOS": [ "Windows" ],
+        "intelliSenseMode": "windows-clang-x64"
+      }
+    }
+  },
+  {
+    "name": "ninja-gcc",
+    "inherits": "default",
+    "displayName": "Ninja Configure Settings (GCC)",
+    "description": "Configure with Ninja generator and GCC-11 compiler",
+    "cacheVariables": {
+      "CMAKE_C_COMPILER": "gcc-11",
+      "CMAKE_CXX_COMPILER": "g++-11"
+    }
+  },
+  {
+    "name": "ninja-clang",
+    "inherits": "default",
+    "displayName": "Ninja Configure Settings (Clang)",
+    "description": "Configure with Ninja generator and Clang-15 compiler",
+    "cacheVariables": {
+      "CMAKE_C_COMPILER": "clang-15",
+      "CMAKE_CXX_COMPILER": "clang++-15"
+    }
+  } 
   ],
   "buildPresets": [
-	{
-      "name": "ninja+debug+gcc",
-      "configurePreset": "ninja-debug-gcc",
-      "displayName": "Build Debug with Ninja",
-      "description": "Build Debug with Ninja (gcc)"
-    },
-	{
-      "name": "ninja+debug+clang",
-      "configurePreset": "ninja-debug-clang",
-      "displayName": "Build Debug with Ninja",
-      "description": "Build Debug with Ninja (clang)"
-    },
-    {
-      "name": "ninja+gcc",
-      "configurePreset": "ninja-release-gcc",
-      "displayName": "Build with Ninja",
-      "description": "Build with Ninja (gcc)"
-    },
-	{
-      "name": "ninja+clang",
-      "configurePreset": "ninja-release-clang",
-      "displayName": "Build with Ninja",
-      "description": "Build with Ninja (clang)"
-    },
-    {
-      "name": "msbuild-vcpkg",
-      "configurePreset": "msbuild-vcpkg",
-      "displayName": "Build MSBuild",
-      "description": "Build with MSBuild (VS)"
-    }
+  {
+    "name": "msvc-dbg",
+    "configurePreset": "msbuild-default",
+    "displayName": "Debug",
+    "configuration": "Debug",
+    "description": "Disable optimizations - include debug information"
+  },
+  {
+    "name": "msvc",
+    "configurePreset": "msbuild-default",
+    "displayName": "Release",
+    "configuration": "Release",
+    "description": "Optimize for speed - exclude debug information"
+  },
+  {
+    "name": "clang-cl-dbg",
+    "configurePreset": "msbuild-clang",
+    "displayName": "Debug",
+    "configuration": "Debug",
+    "description": "Disable optimizations - include debug information"
+  },
+  {
+    "name": "clang-cl",
+    "configurePreset": "msbuild-clang",
+    "displayName": "Release",
+    "configuration": "Release",
+    "description": "Optimize for speed - exclude debug information"
+  },
+  {
+    "name": "gcc-dbg",
+    "configurePreset": "ninja-gcc",
+    "displayName": "Debug",
+    "configuration": "Debug",
+    "description": "Disable optimizations - include debug information"
+  },
+  {
+    "name": "gcc",
+    "configurePreset": "ninja-gcc",
+    "displayName": "Release",
+    "configuration": "Release",
+    "description": "Optimize for speed - exclude debug information"
+  },
+  {
+    "name": "clang-dbg",
+    "configurePreset": "ninja-clang",
+    "displayName": "Debug",
+    "configuration": "Debug",
+    "description": "Disable optimizations - include debug information"
+  },
+  {
+    "name": "clang",
+    "configurePreset": "ninja-clang",
+    "displayName": "Release",
+    "configuration": "Release",
+    "description": "Optimize for speed - exclude debug information"
+  }
   ]
 }
