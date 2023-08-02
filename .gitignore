@@ -366,13 +366,9 @@ FodyWeavers.xsd
 
 # Ignore build directory
 build/
-debug/
-release/
-msvc/
-msbuild/
 
 # Ignore install directory
-out/
+bin/
 
 # Ignore vscode files
 /.vscode
