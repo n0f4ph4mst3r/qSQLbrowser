@@ -33,5 +33,8 @@ QBrowserApp::QBrowserApp(QWidget* parent, Qt::WindowFlags flags) : QMainWindow(p
     m_mainWidget->setMinimumSize(820, 625);
 
     QObject::connect(m_tree, &QConnectionCtrl::tableModelChanged, m_table, &QDbTableView::setTableModel);
+    QObject::connect(querypanel, &QSqlQueryPanel::tableModelChanged, m_table, &QDbTableView::setTableModel);
+    QObject::connect(m_tree, &QConnectionCtrl::dbSelected, querypanel, &QSqlQueryPanel::dbChange);
     QObject::connect(m_tree, &QConnectionCtrl::statusMessage, [&](const QString& text) { statusBar()->showMessage(text); });
+    QObject::connect(querypanel, &QSqlQueryPanel::statusMessage, [&](const QString& text) { statusBar()->showMessage(text); });
 }

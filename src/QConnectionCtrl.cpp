@@ -186,4 +186,5 @@ void QConnectionCtrl::setActiveDb(QTreeWidgetItem* item) {
 
     f_setBold(item, true);
     m_activeDb = QSqlDatabase::connectionNames().value(indexOfTopLevelItem(item));
+    emit dbSelected(m_activeDb);
 }

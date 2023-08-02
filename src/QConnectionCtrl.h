@@ -31,6 +31,7 @@ public slots:
 signals:
 	void tableModelChanged(QAbstractItemModel* model, QAbstractItemView::EditTriggers triggers);
 	void statusMessage(const QString& message);
+	void dbSelected(const QString& db);
 protected:
 	QString m_activeDb;
 
