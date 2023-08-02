@@ -15,6 +15,7 @@ endif()
 
 project(qSQLbrowser)
 
+set(CMAKE_INSTALL_BINDIR .)
 find_package(Qt6 REQUIRED COMPONENTS Widgets Sql)
 qt_standard_project_setup()
 
@@ -37,13 +38,18 @@ set_target_properties(qSQLbrowser PROPERTIES
 
 set(CMAKE_INSTALL_MESSAGE "-- Installing: ${CMAKE_INSTALL_PREFIX}")
 install(TARGETS qSQLbrowser
-    BUNDLE  DESTINATION bin
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    BUNDLE  DESTINATION .
 )
 
-qt_generate_deploy_app_script(
+qt_generate_deploy_script(
     TARGET qSQLbrowser
     OUTPUT_SCRIPT deploy_script
-    NO_UNSUPPORTED_PLATFORM_ERROR
-)
+    CONTENT "
+qt_deploy_runtime_dependencies(
+    EXECUTABLE \"./$<TARGET_FILE_NAME:qSQLbrowser>\"
+    GENERATE_QT_CONF
+	PLUGINS_DIR QtPlugins
+    VERBOSE
+	NO_TRANSLATIONS
+)")
 install(SCRIPT ${deploy_script})
