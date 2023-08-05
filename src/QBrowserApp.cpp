@@ -27,6 +27,15 @@ QBrowserApp::QBrowserApp(QWidget* parent, Qt::WindowFlags flags) : QMainWindow(p
     vSplitter->setStretchFactor(0, 1);
     vSplitter->setStretchFactor(1, 0);
 
+    QMenu* mainMenu = menuBar()->addMenu(QObject::tr("&General"));
+    mainMenu->addAction(QObject::tr("Add &Connection..."), [&]() { QMetaObject::invokeMethod(findChild<QConnectionCtrl*>("connectionCtrl"), "showConnectionDialog", Qt::QueuedConnection); });
+    mainMenu->addSeparator();
+    mainMenu->addAction(QObject::tr("&Quit"), []() { qApp->quit(); });
+
+    QMenu* helpMenu = menuBar()->addMenu(QObject::tr("&Help"));
+    helpMenu->addAction(QObject::tr("About"), [&]() { about(); });
+    helpMenu->addAction(QObject::tr("About Qt"), []() { qApp->aboutQt(); });
+
     QVBoxLayout* mainLayout = new QVBoxLayout;
     mainLayout->addWidget(vSplitter);
     m_mainWidget->setLayout(mainLayout);
@@ -37,4 +46,17 @@ QBrowserApp::QBrowserApp(QWidget* parent, Qt::WindowFlags flags) : QMainWindow(p
     QObject::connect(m_tree, &QConnectionCtrl::dbSelected, querypanel, &QSqlQueryPanel::dbChange);
     QObject::connect(m_tree, &QConnectionCtrl::statusMessage, [&](const QString& text) { statusBar()->showMessage(text); });
     QObject::connect(querypanel, &QSqlQueryPanel::statusMessage, [&](const QString& text) { statusBar()->showMessage(text); });
+}
+
+void QBrowserApp::about() {
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("About");
+    msgBox.setTextFormat(Qt::MarkdownText);
+    msgBox.setText(tr("### qSQLbrowser\r\n"
+        "Browser for visualizing the results of SQL statements on a live database.\r\n"
+        "#### Author\r\n"
+        "Korshunov Vladislav \\<vladredsoup@gmail.com\\>\n\n"
+        "[License](https://github.com/n0f4ph4mst3r/qSQLbrowser/blob/master/LICENSE.txt) | [GitHub](https://github.com/n0f4ph4mst3r/qSQLbrowser)"));
+    msgBox.setIconPixmap(QPixmap(":/icons/app_icon.png"));
+    msgBox.exec();
 }

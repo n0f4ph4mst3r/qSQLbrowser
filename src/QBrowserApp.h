@@ -7,6 +7,7 @@
 #include <QStatusBar>
 #include <QSplitter>
 #include <QFrame>
+#include <QMenuBar>
 
 #include "QConnectionCtrl.h"
 #include "QDbTableView.h"
@@ -22,6 +23,8 @@ protected:
 	QDbTableView* m_table;
 public:
 	explicit QBrowserApp(QWidget* parent = nullptr, Qt::WindowFlags flags = Qt::WindowFlags());
+public slots:
+	void about();
 };
 
 #endif
