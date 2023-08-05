@@ -6,7 +6,7 @@ QConnectionCtrl::QConnectionCtrl(QWidget* parent) {
     rootItem->setText(0, tr("Databases"));
     setHeaderItem(rootItem);
 
-    setMinimumSize(250, 252);
+    setMinimumSize(250, 402);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
     setLineWidth(2);

@@ -26,7 +26,7 @@ QSqlQueryPanel::QSqlQueryPanel(QWidget* parent, Qt::WindowFlags f) : QFrame(pare
     mainLayout->addWidget(buttonpanel);
     setLayout(mainLayout);
 
-    setMinimumSize(800, 350);
+    setMinimumSize(800, 200);
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
     setLineWidth(2);
 }

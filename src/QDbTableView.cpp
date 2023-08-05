@@ -38,7 +38,7 @@ QDbTableView::QDbTableView(QWidget* parent) {
     setContextMenuPolicy(Qt::ActionsContextMenu);
     setSelectionBehavior(QAbstractItemView::SelectRows);
 
-    setMinimumSize(300, 252);
+    setMinimumSize(300, 402);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
     setLineWidth(2);
