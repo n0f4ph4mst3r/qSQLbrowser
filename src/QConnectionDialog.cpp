@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2023 Korshunov Vladislav <vladredsoup@gmail.com>
+// SPDX-License-Identifier: (GPL-3.0-only)
+
 #include "QConnectionDialog.h"
 
 QConnectionDialog::QConnectionDialog(QWidget* parent, Qt::WindowFlags f) {

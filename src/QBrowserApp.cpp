@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2023 Korshunov Vladislav <vladredsoup@gmail.com>
+// SPDX-License-Identifier: (GPL-3.0-only)
+
 #include "QBrowserApp.h"
 
 QBrowserApp::QBrowserApp(QWidget* parent, Qt::WindowFlags flags) : QMainWindow(parent, flags), m_mainWidget(new QWidget) {

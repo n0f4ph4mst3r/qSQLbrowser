@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2023 Korshunov Vladislav <vladredsoup@gmail.com>
+// SPDX-License-Identifier: (GPL-3.0-only)
+
 #include "QBrowserApp.h"
 
 int main(int argc, char* argv[]) {
