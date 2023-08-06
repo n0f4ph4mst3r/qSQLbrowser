@@ -19,6 +19,10 @@ else()
 	set(VCPKG_TARGET_TRIPLET ${VCPKG_ROOT_TRIPLET})
 endif()
 
+if (CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+    set(CMAKE_INSTALL_PREFIX "${CMAKE_BINARY_DIR}/bin" CACHE PATH "Default install path" FORCE)
+endif()
+
 project(qSQLbrowser)
 
 set(CMAKE_INSTALL_BINDIR .)
