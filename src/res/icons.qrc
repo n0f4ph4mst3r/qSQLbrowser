@@ -1,0 +1,18 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+  <qresource prefix="/icons">
+    <file>app_icon.xpm</file>
+	<file>app_icon.png</file>
+	<file>db.png</file>
+	<file>dbConnect.png</file>
+	<file>delete-row.png</file>
+	<file>insert-row.png</file>
+	<file>selection-tool.png</file>
+	<file>submit-all.png</file>
+	<file>metadata.png</file>
+	<file>refresh.png</file>
+	<file>revert-all.png</file>
+	<file>quit.png</file>
+	<file>table.png</file>
+  </qresource>
+</RCC>

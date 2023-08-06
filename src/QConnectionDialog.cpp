@@ -59,7 +59,7 @@ QConnectionDialog::QConnectionDialog(QWidget* parent, Qt::WindowFlags f) {
     setLayout(dialogLayout);
 
 #ifdef Q_OS_WINDOWS
-    setWindowIcon(QApplication::style()->standardIcon(QStyle::SP_CommandLink));
+    setWindowIcon(QIcon(":/icons/dbConnect.png"));
 #endif
 }
 

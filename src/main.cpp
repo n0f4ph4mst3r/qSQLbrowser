@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
     }
 
 #ifndef Q_OS_WINDOWS
-    QApplication::setWindowIcon(QIcon(":/app_icon/app_icon.xpm"));
+    QApplication::setWindowIcon(QIcon(":/icons/app_icon.xpm"));
 #endif
 
     QBrowserApp browser;

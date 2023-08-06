@@ -31,13 +31,13 @@ QBrowserApp::QBrowserApp(QWidget* parent, Qt::WindowFlags flags) : QMainWindow(p
     vSplitter->setStretchFactor(1, 0);
 
     QMenu* mainMenu = menuBar()->addMenu(QObject::tr("&General"));
-    mainMenu->addAction(QObject::tr("Add &Connection..."), [&]() { QMetaObject::invokeMethod(findChild<QConnectionCtrl*>("connectionCtrl"), "showConnectionDialog", Qt::QueuedConnection); });
+    mainMenu->addAction(QIcon(":/icons/dbConnect.png"), QObject::tr("Add &Connection..."), [&]() { QMetaObject::invokeMethod(findChild<QConnectionCtrl*>("connectionCtrl"), "showConnectionDialog", Qt::QueuedConnection); });
     mainMenu->addSeparator();
-    mainMenu->addAction(QObject::tr("&Quit"), []() { qApp->quit(); });
+    mainMenu->addAction(QIcon(":/icons/quit.png"), QObject::tr("&Quit"), []() { qApp->quit(); });
 
     QMenu* helpMenu = menuBar()->addMenu(QObject::tr("&Help"));
-    helpMenu->addAction(QObject::tr("About"), [&]() { about(); });
-    helpMenu->addAction(QObject::tr("About Qt"), []() { qApp->aboutQt(); });
+    helpMenu->addAction(QIcon(":/icons/app_icon.png"), QObject::tr("About"), [&]() { about(); });
+    helpMenu->addAction(QApplication::style()->standardIcon(QStyle::SP_TitleBarMenuButton), QObject::tr("About Qt"), []() { qApp->aboutQt(); });
 
     QVBoxLayout* mainLayout = new QVBoxLayout;
     mainLayout->addWidget(vSplitter);
