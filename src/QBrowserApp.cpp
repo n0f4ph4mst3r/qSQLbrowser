@@ -5,7 +5,7 @@
 
 QBrowserApp::QBrowserApp(QWidget* parent, Qt::WindowFlags flags) : QMainWindow(parent, flags), m_mainWidget(new QWidget) {
     setCentralWidget(m_mainWidget);
-    setWindowTitle(QObject::tr("QSqlBrowser"));
+    setWindowTitle(QObject::tr("qSQLBrowser"));
 
     QSplitter* vSplitter = new QSplitter(Qt::Vertical, m_mainWidget);
     QSplitter* hSplitter = new QSplitter(vSplitter);
