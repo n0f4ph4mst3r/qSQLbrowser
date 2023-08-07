@@ -3,13 +3,15 @@ set(SOURCE_FILES main.cpp
 				 QConnectionDialog.cpp
 				 QSqlQueryPanel.cpp
 				 QConnectionCtrl.cpp
-				 QDbTableView.cpp)
+				 QDbTableView.cpp
+				 QQueryHighlighter.cpp)
 				 
 set(HEADERS QBrowserApp.h
 			QConnectionDialog.h
 			QSqlQueryPanel.h
 			QConnectionCtrl.h
-			QDbTableView.h)
+			QDbTableView.h
+			QQueryHighlighter.h)
 	
 if(WIN32)
 	set(RESOURCES res/app_icon.rc)
