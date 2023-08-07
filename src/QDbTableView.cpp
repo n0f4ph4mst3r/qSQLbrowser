@@ -1,14 +1,17 @@
+// SPDX-FileCopyrightText: 2023 Korshunov Vladislav <vladredsoup@gmail.com>
+// SPDX-License-Identifier: (GPL-3.0-only)
+
 #include "QDbTableView.h"
 
 QDbTableView::QDbTableView(QWidget* parent) {
-    m_selectAction = new QAction(tr("Select"), this);
-    m_insertRowAction = new QAction(tr("Insert Row"), this);
-    m_deleteRowAction = new QAction(tr("Delete Row"), this);
+    m_selectAction = new QAction(QIcon(":/icons/selection-tool.png"), tr("Select"), this);
+    m_insertRowAction = new QAction(QIcon(":/icons/insert-row.png"), tr("Insert Row"), this);
+    m_deleteRowAction = new QAction(QIcon(":/icons/delete-row.png"), tr("Delete Row"), this);
     m_fieldStrategyAction = new QAction(tr("Submit on Field Change"), this);
     m_rowStrategyAction = new QAction(tr("Submit on Row Change"), this);
     m_manualStrategyAction = new QAction(tr("Submit Manually"), this);
-    m_submitAction = new QAction(tr("Submit All"), this);
-    m_revertAction = new QAction(tr("Revert All"), this);
+    m_submitAction = new QAction(QIcon(":/icons/submit-all.png"), tr("Submit All"), this);
+    m_revertAction = new QAction(QIcon(":/icons/revert-all.png"), tr("Revert All"), this);
 
     m_fieldStrategyAction->setCheckable(true);
     m_rowStrategyAction->setCheckable(true);

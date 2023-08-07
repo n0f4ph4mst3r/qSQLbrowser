@@ -1,8 +1,11 @@
+// SPDX-FileCopyrightText: 2023 Korshunov Vladislav <vladredsoup@gmail.com>
+// SPDX-License-Identifier: (GPL-3.0-only)
+
 #include "QBrowserApp.h"
 
 QBrowserApp::QBrowserApp(QWidget* parent, Qt::WindowFlags flags) : QMainWindow(parent, flags), m_mainWidget(new QWidget) {
     setCentralWidget(m_mainWidget);
-    setWindowTitle(QObject::tr("QSqlBrowser"));
+    setWindowTitle(QObject::tr("qSQLBrowser"));
 
     QSplitter* vSplitter = new QSplitter(Qt::Vertical, m_mainWidget);
     QSplitter* hSplitter = new QSplitter(vSplitter);
@@ -28,13 +31,13 @@ QBrowserApp::QBrowserApp(QWidget* parent, Qt::WindowFlags flags) : QMainWindow(p
     vSplitter->setStretchFactor(1, 0);
 
     QMenu* mainMenu = menuBar()->addMenu(QObject::tr("&General"));
-    mainMenu->addAction(QObject::tr("Add &Connection..."), [&]() { QMetaObject::invokeMethod(findChild<QConnectionCtrl*>("connectionCtrl"), "showConnectionDialog", Qt::QueuedConnection); });
+    mainMenu->addAction(QIcon(":/icons/dbConnect.png"), QObject::tr("Add &Connection..."), [&]() { QMetaObject::invokeMethod(findChild<QConnectionCtrl*>("connectionCtrl"), "showConnectionDialog", Qt::QueuedConnection); });
     mainMenu->addSeparator();
-    mainMenu->addAction(QObject::tr("&Quit"), []() { qApp->quit(); });
+    mainMenu->addAction(QIcon(":/icons/quit.png"), QObject::tr("&Quit"), []() { qApp->quit(); });
 
     QMenu* helpMenu = menuBar()->addMenu(QObject::tr("&Help"));
-    helpMenu->addAction(QObject::tr("About"), [&]() { about(); });
-    helpMenu->addAction(QObject::tr("About Qt"), []() { qApp->aboutQt(); });
+    helpMenu->addAction(QIcon(":/icons/app_icon.png"), QObject::tr("About"), [&]() { about(); });
+    helpMenu->addAction(QApplication::style()->standardIcon(QStyle::SP_TitleBarMenuButton), QObject::tr("About Qt"), []() { qApp->aboutQt(); });
 
     QVBoxLayout* mainLayout = new QVBoxLayout;
     mainLayout->addWidget(vSplitter);

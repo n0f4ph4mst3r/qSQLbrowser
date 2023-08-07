@@ -1,8 +1,11 @@
+// SPDX-FileCopyrightText: 2023 Korshunov Vladislav <vladredsoup@gmail.com>
+// SPDX-License-Identifier: (GPL-3.0-only)
+
 #include "QConnectionCtrl.h"
 
 QConnectionCtrl::QConnectionCtrl(QWidget* parent) {
     QTreeWidgetItem* rootItem = new QTreeWidgetItem();
-    rootItem->setIcon(0, QApplication::style()->standardIcon(QStyle::SP_ComputerIcon));
+    rootItem->setIcon(0, QApplication::style()->standardIcon(QStyle::SP_DriveNetIcon));
     rootItem->setText(0, tr("Databases"));
     setHeaderItem(rootItem);
 
@@ -11,13 +14,13 @@ QConnectionCtrl::QConnectionCtrl(QWidget* parent) {
     setFrameStyle(QFrame::Panel | QFrame::Sunken);
     setLineWidth(2);
 
-    QAction* refreshAction = new QAction(tr("Refresh"), this);
-    QAction* shemaAction = new QAction(tr("Show shema"), this);
+    QAction* refreshAction = new QAction(QIcon(":/icons/refresh.png"), tr("Refresh"), this);
+    QAction* shemaAction = new QAction(QIcon(":/icons/metadata.png"), tr("Show shema"), this);
     shemaAction->setEnabled(false);
     shemaAction->setObjectName("shemaAction");
     QAction* separator = new QAction;
     separator->setSeparator(true);
-    QAction* addConnectionAction = new QAction(tr("Add Connection..."), this);
+    QAction* addConnectionAction = new QAction(QIcon(":/icons/dbConnect.png"), tr("Add Connection..."), this);
 
     connect(refreshAction, &QAction::triggered, this, [=]() { refresh(); });
     connect(shemaAction, &QAction::triggered, this, &QConnectionCtrl::showMetaData);
@@ -147,7 +150,7 @@ void QConnectionCtrl::refresh() {
         dbCaption.append(db.databaseName());
 
         rootItem->setText(0, dbCaption);
-        rootItem->setIcon(0, QApplication::style()->standardIcon(QStyle::SP_DriveNetIcon));
+        rootItem->setIcon(0, QIcon(":/icons/db.png"));
         if (connectionNames.at(i) == QSqlDatabase::database(m_activeDb).connectionName()) {
             gotActiveDb = true;
             setActiveDb(rootItem);
@@ -157,7 +160,7 @@ void QConnectionCtrl::refresh() {
             for (int t = 0; t < tableList.count(); ++t) {
                 QTreeWidgetItem* table = new QTreeWidgetItem(rootItem);
                 table->setText(0, tableList.at(t));
-                table->setIcon(0, QApplication::style()->standardIcon(QStyle::SP_DirOpenIcon));
+                table->setIcon(0, QIcon(":/icons/table.png"));
             }
         }
     }

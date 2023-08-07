@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2023 Korshunov Vladislav <vladredsoup@gmail.com>
+// SPDX-License-Identifier: (GPL-3.0-only)
+
 #include "QBrowserApp.h"
 
 int main(int argc, char* argv[]) {
@@ -15,7 +18,7 @@ int main(int argc, char* argv[]) {
     }
 
 #ifndef Q_OS_WINDOWS
-    QApplication::setWindowIcon(QIcon(":/app_icon/app_icon.xpm"));
+    QApplication::setWindowIcon(QIcon(":/icons/app_icon.xpm"));
 #endif
 
     QBrowserApp browser;

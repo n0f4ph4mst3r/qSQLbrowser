@@ -1,3 +1,6 @@
+// SPDX-FileCopyrightText: 2023 Korshunov Vladislav <vladredsoup@gmail.com>
+// SPDX-License-Identifier: (GPL-3.0-only)
+
 #include "QConnectionDialog.h"
 
 QConnectionDialog::QConnectionDialog(QWidget* parent, Qt::WindowFlags f) {
@@ -56,7 +59,7 @@ QConnectionDialog::QConnectionDialog(QWidget* parent, Qt::WindowFlags f) {
     setLayout(dialogLayout);
 
 #ifdef Q_OS_WINDOWS
-    setWindowIcon(QApplication::style()->standardIcon(QStyle::SP_CommandLink));
+    setWindowIcon(QIcon(":/icons/dbConnect.png"));
 #endif
 }
 
