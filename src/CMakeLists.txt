@@ -1,14 +1,18 @@
 set(SOURCE_FILES main.cpp
 				 QBrowserApp.cpp
 				 QConnectionDialog.cpp
-				 QSqlCtrl.cpp
-				 QSqlQueryPanel.cpp)
+				 QSqlQueryPanel.cpp
+				 QConnectionCtrl.cpp
+				 QDbTableView.cpp
+				 QQueryHighlighter.cpp)
 				 
 set(HEADERS QBrowserApp.h
 			QConnectionDialog.h
-			QSqlCtrl.h
-			QSqlQueryPanel.h)
-
+			QSqlQueryPanel.h
+			QConnectionCtrl.h
+			QDbTableView.h
+			QQueryHighlighter.h)
+	
 if(WIN32)
 	set(RESOURCES res/app_icon.rc)
 	source_group("Resource files" FILES ${RESOURCES}) 
