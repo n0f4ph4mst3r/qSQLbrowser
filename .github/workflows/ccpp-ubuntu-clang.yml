@@ -1,0 +1,51 @@
+name: C/C++ CI (Ubuntu Clang)
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: true
+        fetch-depth: 0
+
+    - uses: lukka/get-cmake@latest
+    - name: List $RUNNER_WORKSPACE before vcpkg is setup
+      run: find $RUNNER_WORKSPACE
+      shell: bash
+
+    - name: Setup vcpkg
+      uses: lukka/run-vcpkg@main
+      id: runvcpkg
+
+    - name: List $RUNNER_WORKSPACE before build
+      run: find $RUNNER_WORKSPACE
+      shell: bash
+        
+    - name: Prints output of run-vcpkg's action.
+      run: echo "root='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_ROOT_OUT }}', triplet='${{ steps.runvcpkg.outputs.RUNVCPKG_VCPKG_DEFAULT_TRIPLET_OUT }}' "
+        
+    - name: Install dependencies
+      run: |
+        sudo apt-get install autoconf-archive '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev libxkbcommon-dev libxkbcommon-x11-dev
+        
+    - name: Set up Clang
+      uses: egor-tensin/setup-clang@v1
+      with:
+          version: 15
+          platform: x64
+      
+    - name: Run CMake
+      uses: lukka/run-cmake@v10
+      with:
+        configurePreset: 'ninja-clang'
+        configurePresetAdditionalArgs: "['-DVCPKG_ROOT_TRIPLET=x64-linux-release']"
+        buildPreset: 'clang'
+
+    - name: List $RUNNER_WORKSPACE after build
+      run: find $RUNNER_WORKSPACE
+      shell: bash

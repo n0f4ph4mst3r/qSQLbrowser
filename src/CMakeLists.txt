@@ -1,19 +1,22 @@
 set(SOURCE_FILES main.cpp
 				 QBrowserApp.cpp
 				 QConnectionDialog.cpp
-				 QSqlCtrl.cpp
-				 QSqlQueryPanel.cpp)
+				 QSqlQueryPanel.cpp
+				 QConnectionCtrl.cpp
+				 QDbTableView.cpp
+				 QQueryHighlighter.cpp)
 				 
 set(HEADERS QBrowserApp.h
 			QConnectionDialog.h
-			QSqlCtrl.h
-			QSqlQueryPanel.h)
-
+			QSqlQueryPanel.h
+			QConnectionCtrl.h
+			QDbTableView.h
+			QQueryHighlighter.h)
+	
+qt_add_resources(RESOURCES res/icons.qrc)
 if(WIN32)
-	set(RESOURCES res/app_icon.rc)
-	source_group("Resource files" FILES ${RESOURCES}) 
+	source_group("Resource files" FILES res/app_icon.rc res/icons.qrc)
+	qt_add_executable(qSQLbrowser MANUAL_FINALIZATION ${SOURCE_FILES} ${HEADERS} ${RESOURCES} res/app_icon.rc)
 else()
-	qt_add_resources(RESOURCES res/app_icon.qrc)
+	qt_add_executable(qSQLbrowser MANUAL_FINALIZATION ${SOURCE_FILES} ${HEADERS} ${RESOURCES})
 endif()
-
-qt_add_executable(qSQLbrowser MANUAL_FINALIZATION ${SOURCE_FILES} ${HEADERS} ${RESOURCES})
